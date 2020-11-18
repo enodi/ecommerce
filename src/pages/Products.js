@@ -15,33 +15,24 @@ const GET_PRODUCTS = gql`
 
 const Products = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
-  console.log(loading, ">>>>loading", error, "<<<<<error", data);
-  if (error) {
-    return <div>Error</div>;
-  }
-
-  if (loading) {
-    return (
-      <div className="App">
-        <h2>Loading...</h2>
-      </div>
-    );
-  }
-  if (data) {
-    if (data.products.length > 0) {
-      return (
-        <div className="characters">
-          {data.products.map((product) => (
-            <div key={product.id} className="product">
-              <img src={product.image_url} alt={product.title} />
-              <p>{product.title}</p>
-              <p>{product.price}</p>
-            </div>
-          ))}
-        </div>
-      );
-    }
-  }
+  return (
+    <div className="products-container">
+      {data &&
+        data.products.length > 0 &&
+        data.products.map((product) => (
+          <div key={product.id} className="product__item">
+            <img
+              src={product.image_url}
+              alt={product.title}
+              className="product__image"
+            />
+            <p>{product.title}</p>
+            <p>{product.price}</p>
+            <button>Add to Cart</button>
+          </div>
+        ))}
+    </div>
+  );
 };
 
 export default Products;

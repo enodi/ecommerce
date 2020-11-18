@@ -5,6 +5,7 @@ import { ApolloProvider } from "react-apollo";
 
 import AppRoute from "./routes/app-route";
 import reportWebVitals from "./reportWebVitals";
+import "./styles/style.scss";
 
 const client = new ApolloClient({
   uri: "https://pangaea-interviews.now.sh/api/graphql/",
