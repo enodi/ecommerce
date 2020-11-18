@@ -1,0 +1,46 @@
+.sidebar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  background-color: $primary-color;
+  width: 550px;
+  padding: 1.6rem 0;
+
+  h4 {
+    text-align: center;
+  }
+
+  p {
+    cursor: pointer;
+  }
+}
+
+.sidebar.hide {
+  display: none;
+}
+
+.sidebar.show {
+  display: block;
+}
+
+.sidebar__cart-item {
+  display: flex;
+  flex-direction: column;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.sidebar__cart-image {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 170px;
+  width: 80px;
+}
+
+.sidebar__cart-image-container {
+  align-self: flex-end;
+}

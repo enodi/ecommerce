@@ -1,0 +1,20 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f5f5f4;
+  border-bottom: 1px solid #dddddc;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    padding-inline-start: 0;
+
+    li {
+      padding-right: 1rem;
+      cursor: pointer;
+    }
+  }
+}
