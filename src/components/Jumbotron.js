@@ -1,9 +1,14 @@
 import React from "react";
 
+import FilterDropdown from "./FilterDropdown";
+
 const Jumbotron = () => (
   <section className="jumbotron">
-    <h2>All Products</h2>
-    <p>A 360° look at Lumin</p>
+    <div>
+      <h2>All Products</h2>
+      <p>A 360° look at Lumin</p>
+    </div>
+    <FilterDropdown />
   </section>
 );
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { gql } from "apollo-boost";
 import { useQuery } from "react-apollo";
 
@@ -8,11 +8,11 @@ import Header from "../components/Header";
 import Jumbotron from "../components/Jumbotron";
 
 const GET_PRODUCTS = gql`
-  query getProducts {
+  query getProducts($currency: Currency) {
     products {
       id
       title
-      price(currency: USD)
+      price(currency: $currency)
       image_url
     }
   }
@@ -22,51 +22,136 @@ const ProductsPage = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [itemInCart, setItemInCart] = useState([]);
-  const { loading, data } = useQuery(GET_PRODUCTS);
+  const [currency, setCurrency] = useState("NGN");
+  const [subtotal, setSubtotal] = useState(0);
+  const { data } = useQuery(GET_PRODUCTS, {
+    variables: { currency },
+  });
+  const allProducts = data && data.products;
+  const cartItems = JSON.stringify(itemInCart);
+  const products = JSON.stringify(allProducts);
+
+  useEffect(() => {
+    updateCartItem();
+  }, [currency, cartItems, products, cartCount]);
+
+  const updateCartItem = () => {
+    const mergedItem = [];
+    data &&
+      data?.products.map((item) => {
+        return itemInCart.find((product) => {
+          if (product.id === item.id) {
+            item.count = product.count;
+            mergedItem.push(item);
+          }
+          return setItemInCart(mergedItem);
+        });
+      });
+    const amount = itemInCart.reduce(
+      (acc, currentValue) => acc + currentValue.price * currentValue.count,
+      0
+    );
+    setSubtotal(amount);
+  };
 
   const handleShowSidebar = () => setShowSidebar(!showSidebar);
 
-  const handleCartCount = () => setCartCount(cartCount + 1);
+  const increaseCartCount = () => setCartCount(cartCount + 1);
 
-  const handleCartItem = (item) => {
+  const decreaseCartCount = (count = 1) => setCartCount(cartCount - count);
+
+  const handleChangeCurrency = (event) => setCurrency(event.target.value);
+
+  const handleAddItemToCart = (item) => {
+    setShowSidebar(true);
     const cartItem = [];
-    handleCartCount();
-    const exists = itemInCart.some((cart) => cart.id === item.id);
-    exists ? setItemInCart(itemInCart) : addCartItem(cartItem, item);
+    increaseCartCount();
+    const itemExists = itemInCart.some((cart) => cart.id === item.id);
+    itemExists ? setExistingCartItem(item) : addCartItem(cartItem, item);
+  };
+
+  const setExistingCartItem = (item) => {
+    const foundProduct = itemInCart.find((product) => product.id === item.id);
+    foundProduct.count++;
+    setItemInCart(itemInCart);
   };
 
   const addCartItem = (cartItem, item) => {
+    item.count = 1;
     cartItem.push(item);
     setItemInCart([...itemInCart, ...cartItem]);
   };
 
+  const decreaseCartItemCount = (item) => {
+    const cartItem = [];
+    item.count--;
+
+    if (item.count > 0) {
+      cartItem.push(item);
+      const mergedItem = itemInCart.map(
+        (item) => cartItem.find((product) => product.id === item.id) || item
+      );
+      setItemInCart(mergedItem);
+    } else {
+      const filteredItem = itemInCart.filter((cart) => cart.id !== item.id);
+      setItemInCart(filteredItem);
+    }
+    decreaseCartCount();
+  };
+
+  const increaseCartItemCount = (item) => {
+    const cartItem = [];
+    item.count++;
+
+    if (item.count > 0) {
+      cartItem.push(item);
+      const mergedItem = itemInCart.map(
+        (cart) => cartItem.find((product) => product.id === cart.id) || cart
+      );
+      setItemInCart(mergedItem);
+    } else {
+      const filteredItem = itemInCart.filter((cart) => cart.id !== item.id);
+      setItemInCart(filteredItem);
+    }
+    increaseCartCount();
+  };
+
+  const removeItemFromCart = (item) => {
+    const quantity = item.count;
+    const filteredItem = itemInCart.filter((cart) => cart.id !== item.id);
+    setItemInCart(filteredItem);
+    decreaseCartCount(quantity);
+  };
+
   return (
-    <div className="products-page">
-      {loading ? (
-        <div>loading....</div>
-      ) : (
-        <>
-          <Header handleShowSidebar={handleShowSidebar} cartCount={cartCount} />
-          <Jumbotron />
-          <div className="products-container">
-            {data &&
-              data.products.length > 0 &&
-              data.products.map((product) => (
-                <Product
-                  product={product}
-                  key={product.id}
-                  handleCartItem={handleCartItem}
-                />
-              ))}
-          </div>
-          <Sidebar
-            showSidebar={showSidebar}
-            handleShowSidebar={handleShowSidebar}
-            itemInCart={itemInCart}
-            cartCount={cartCount}
-          />
-        </>
-      )}
+    <div className="product-page">
+      <Header handleShowSidebar={handleShowSidebar} cartCount={cartCount} />
+      <Jumbotron />
+      <div className="products">
+        <div className="products-container">
+          {data &&
+            data.products.length > 0 &&
+            data.products.map((product) => (
+              <Product
+                product={product}
+                key={product.id}
+                handleAddItemToCart={handleAddItemToCart}
+                currency={currency}
+              />
+            ))}
+        </div>
+      </div>
+      <Sidebar
+        showSidebar={showSidebar}
+        handleShowSidebar={handleShowSidebar}
+        itemInCart={itemInCart}
+        decreaseCartItemCount={decreaseCartItemCount}
+        increaseCartItemCount={increaseCartItemCount}
+        handleChangeCurrency={handleChangeCurrency}
+        currency={currency}
+        removeItemFromCart={removeItemFromCart}
+        subtotal={subtotal}
+      />
     </div>
   );
 };
