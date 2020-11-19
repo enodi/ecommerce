@@ -1,10 +1,10 @@
 # Pangaea Project
 
-Project link: https://acme-mu.vercel.app/
+Project link: https://pangaea-chi.vercel.app/
 
 ## Application setup
 
-- Clone the application `git clone https://github.com/enodi/acme.git`
+- Clone the application `git clone https://github.com/enodi/pangaea.git`
 
 * Open a new tab on your terminal
 * Navigate to the application root directory e.g `$ cd pangaea`
