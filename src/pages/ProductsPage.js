@@ -32,6 +32,13 @@ const ProductsPage = () => {
   const products = JSON.stringify(allProducts);
 
   useEffect(() => {
+    const item = localStorage.getItem("cart");
+    const count = localStorage.getItem("cartCount");
+    item && setItemInCart(JSON.parse(item));
+    count && setCartCount(count);
+  }, []);
+
+  useEffect(() => {
     updateCartItem();
   }, [currency, cartItems, products, cartCount]);
 
@@ -68,18 +75,22 @@ const ProductsPage = () => {
     increaseCartCount();
     const itemExists = itemInCart.some((cart) => cart.id === item.id);
     itemExists ? setExistingCartItem(item) : addCartItem(cartItem, item);
+    localStorage.setItem("cartCount", cartCount + 1);
   };
 
   const setExistingCartItem = (item) => {
     const foundProduct = itemInCart.find((product) => product.id === item.id);
     foundProduct.count++;
     setItemInCart(itemInCart);
+    localStorage.setItem("cart", JSON.stringify(itemInCart));
   };
 
   const addCartItem = (cartItem, item) => {
     item.count = 1;
     cartItem.push(item);
+    const cart = [...itemInCart, ...cartItem];
     setItemInCart([...itemInCart, ...cartItem]);
+    localStorage.setItem("cart", JSON.stringify(cart));
   };
 
   const decreaseCartItemCount = (item) => {
@@ -92,11 +103,14 @@ const ProductsPage = () => {
         (item) => cartItem.find((product) => product.id === item.id) || item
       );
       setItemInCart(mergedItem);
+      localStorage.setItem("cart", JSON.stringify(mergedItem));
     } else {
       const filteredItem = itemInCart.filter((cart) => cart.id !== item.id);
       setItemInCart(filteredItem);
+      localStorage.setItem("cart", JSON.stringify(filteredItem));
     }
     decreaseCartCount();
+    localStorage.setItem("cartCount", cartCount - 1);
   };
 
   const increaseCartItemCount = (item) => {
@@ -109,11 +123,14 @@ const ProductsPage = () => {
         (cart) => cartItem.find((product) => product.id === cart.id) || cart
       );
       setItemInCart(mergedItem);
+      localStorage.setItem("cart", JSON.stringify(mergedItem));
     } else {
       const filteredItem = itemInCart.filter((cart) => cart.id !== item.id);
       setItemInCart(filteredItem);
+      localStorage.setItem("cart", JSON.stringify(filteredItem));
     }
     increaseCartCount();
+    localStorage.setItem("cartCount", cartCount + 1);
   };
 
   const removeItemFromCart = (item) => {
@@ -121,6 +138,8 @@ const ProductsPage = () => {
     const filteredItem = itemInCart.filter((cart) => cart.id !== item.id);
     setItemInCart(filteredItem);
     decreaseCartCount(quantity);
+    localStorage.setItem("cart", JSON.stringify(filteredItem));
+    localStorage.setItem("cartCount", cartCount - quantity);
   };
 
   return (
