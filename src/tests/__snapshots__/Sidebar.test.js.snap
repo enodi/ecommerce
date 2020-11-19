@@ -193,7 +193,7 @@ exports[`should render Sidebar component correctly 1`] = `
           Subtotal
         </p>
         <p>
-          NGN 19400
+          NGN 19400.00
         </p>
       </div>
       <div

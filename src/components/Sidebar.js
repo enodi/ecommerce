@@ -66,7 +66,7 @@ const Sidebar = ({
         <div className="sidebar__footer">
           <div className="sidebar__footer-price">
             <p>Subtotal</p>
-            <p>{`${currency} ${subtotal}`}</p>
+            <p>{`${currency} ${subtotal}.00`}</p>
           </div>
           <div className="sidebar__footer-button">
             <button>revert to one time purchase</button>
