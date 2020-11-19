@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Header component correctly 1`] = `
+<header>
+  <div
+    className="header-container"
+  >
+    <ForwardRef(SvgHamburger)
+      className="hamburger"
+      style={
+        Object {
+          "height": 23,
+          "width": 23,
+        }
+      }
+    />
+    <ul
+      className="logo-section"
+    >
+      <li
+        className="logo-container"
+      >
+        <Link
+          to="/"
+        >
+          <img
+            alt="lumin logo"
+            className="logo"
+            src="logo.png"
+          />
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/"
+        >
+          Shop
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/"
+        >
+          Help
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/"
+        >
+          Blog
+        </Link>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <Link
+          to="/"
+        >
+          Account
+        </Link>
+      </li>
+      <li
+        className="cart"
+        onClick={[MockFunction]}
+      >
+        <ForwardRef(SvgShoppingCart)
+          style={
+            Object {
+              "height": 23,
+              "width": 23,
+            }
+          }
+        />
+        <span
+          className="cart--count"
+        >
+          4
+        </span>
+      </li>
+    </ul>
+  </div>
+</header>
+`;

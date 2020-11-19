@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Product component correctly 1`] = `
+<div
+  className="product__item"
+>
+  <img
+    className="product__image"
+  />
+  <p />
+  <p>
+    From: NGN undefined.00
+  </p>
+  <button
+    className="product__cart"
+    onClick={[Function]}
+  >
+    Add to Cart
+  </button>
+</div>
+`;

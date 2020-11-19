@@ -1,0 +1,212 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Sidebar component correctly 1`] = `
+<div
+  className="cart-items show"
+>
+  <div
+    className="overlay"
+  />
+  <aside
+    className="sidebar"
+  >
+    <div
+      className="sidebar-header"
+    >
+      <div
+        className="sidebar__top-section"
+      >
+        <ForwardRef(SvgRightArrow)
+          className="right-arrow"
+          onClick={[MockFunction]}
+          style={
+            Object {
+              "height": 23,
+              "width": 23,
+            }
+          }
+        />
+        <h4>
+          your cart
+        </h4>
+      </div>
+      <CurrencySelector
+        currency="NGN"
+        handleChangeCurrency={[MockFunction]}
+      />
+    </div>
+    <div
+      className="sidebar-content"
+    >
+      <div
+        className="sidebar__cart-item"
+        key="product-undefined"
+      >
+        <div>
+          <p
+            className="title"
+          >
+            Premium-Grade Moisturizing Balm
+          </p>
+          <button
+            onClick={[Function]}
+          >
+            X
+          </button>
+        </div>
+        <div
+          className="sidebar__cart-image-container"
+        >
+          <img
+            alt="Premium-Grade Moisturizing Balm"
+            className="sidebar__cart-image"
+            src="https://d1b929y2mmls08.cloudfront.net/luminskin/img/new-landing-page/moisturizing-balm.png"
+          />
+        </div>
+        <div>
+          <div
+            className="quantity-regulator"
+          >
+            <button
+              onClick={[Function]}
+            >
+              -
+            </button>
+            <span />
+            <button
+              onClick={[Function]}
+            >
+              +
+            </button>
+          </div>
+          <p
+            className="price"
+          >
+            NGN NaN.00
+          </p>
+        </div>
+      </div>
+      <div
+        className="sidebar__cart-item"
+        key="product-undefined"
+      >
+        <div>
+          <p
+            className="title"
+          >
+            No-Nonsense Charcoal Cleanser
+          </p>
+          <button
+            onClick={[Function]}
+          >
+            X
+          </button>
+        </div>
+        <div
+          className="sidebar__cart-image-container"
+        >
+          <img
+            alt="No-Nonsense Charcoal Cleanser"
+            className="sidebar__cart-image"
+            src="https://d1b929y2mmls08.cloudfront.net/luminskin/img/new-landing-page/charcoal-cleanser.png"
+          />
+        </div>
+        <div>
+          <div
+            className="quantity-regulator"
+          >
+            <button
+              onClick={[Function]}
+            >
+              -
+            </button>
+            <span />
+            <button
+              onClick={[Function]}
+            >
+              +
+            </button>
+          </div>
+          <p
+            className="price"
+          >
+            NGN NaN.00
+          </p>
+        </div>
+      </div>
+      <div
+        className="sidebar__cart-item"
+        key="product-undefined"
+      >
+        <div>
+          <p
+            className="title"
+          >
+            Clarifying Body Wash
+          </p>
+          <button
+            onClick={[Function]}
+          >
+            X
+          </button>
+        </div>
+        <div
+          className="sidebar__cart-image-container"
+        >
+          <img
+            alt="Clarifying Body Wash"
+            className="sidebar__cart-image"
+            src="https://i.shgcdn.com/b44f5ef8-6bc0-4a4a-8eef-1f7ced30503d/-/format/auto/-/preview/3000x3000/-/quality/lighter/"
+          />
+        </div>
+        <div>
+          <div
+            className="quantity-regulator"
+          >
+            <button
+              onClick={[Function]}
+            >
+              -
+            </button>
+            <span />
+            <button
+              onClick={[Function]}
+            >
+              +
+            </button>
+          </div>
+          <p
+            className="price"
+          >
+            NGN NaN.00
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      className="sidebar__footer"
+    >
+      <div
+        className="sidebar__footer-price"
+      >
+        <p>
+          Subtotal
+        </p>
+        <p>
+          NGN 19400
+        </p>
+      </div>
+      <div
+        className="sidebar__footer-button"
+      >
+        <button>
+          revert to one time purchase
+        </button>
+        <button>
+          proceed to checkout
+        </button>
+      </div>
+    </div>
+  </aside>
+</div>
+`;

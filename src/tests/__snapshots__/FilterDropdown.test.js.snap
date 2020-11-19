@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render FilterDropdown component correctly 1`] = `
+<select
+  className="filter-by"
+  defaultValue="filter"
+>
+  <option
+    disabled={true}
+    value="filter"
+  >
+    Filter By
+  </option>
+  <option
+    value="all"
+  >
+    All Products
+  </option>
+  <option
+    value="new"
+  >
+    New Products
+  </option>
+  <option
+    value="sets"
+  >
+    Sets
+  </option>
+  <option
+    value="skincare"
+  >
+    Skincare
+  </option>
+  <option
+    value="hair"
+  >
+    Hair & Body Care
+  </option>
+</select>
+`;

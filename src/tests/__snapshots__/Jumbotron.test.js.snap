@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Jumbotron component correctly 1`] = `
+<section
+  className="jumbotron"
+>
+  <div>
+    <h2>
+      All Products
+    </h2>
+    <p>
+      A 360° look at Lumin
+    </p>
+  </div>
+  <FilterDropdown />
+</section>
+`;
