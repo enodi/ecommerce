@@ -40,7 +40,7 @@ const ProductsPage = () => {
 
   useEffect(() => {
     updateCartItem();
-  }, [currency, cartItems, products, cartCount]);
+  }, [currency, cartItems, products, cartCount]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const updateCartItem = () => {
     const mergedItem = [];
