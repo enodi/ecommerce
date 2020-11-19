@@ -6,6 +6,7 @@ import Sidebar from "../components/Sidebar";
 import Product from "../components/Product";
 import Header from "../components/Header";
 import Jumbotron from "../components/Jumbotron";
+import Loader from "../components/Loader";
 
 const GET_PRODUCTS = gql`
   query getProducts($currency: Currency) {
@@ -36,7 +37,7 @@ const ProductsPage = () => {
     const count = localStorage.getItem("cartCount");
     item && setItemInCart(JSON.parse(item));
     count && setCartCount(count);
-  }, []);
+  }, [cartCount]);
 
   useEffect(() => {
     updateCartItem();
@@ -75,7 +76,8 @@ const ProductsPage = () => {
     increaseCartCount();
     const itemExists = itemInCart.some((cart) => cart.id === item.id);
     itemExists ? setExistingCartItem(item) : addCartItem(cartItem, item);
-    localStorage.setItem("cartCount", cartCount + 1);
+    const count = Number(cartCount) + 1;
+    localStorage.setItem("cartCount", count);
   };
 
   const setExistingCartItem = (item) => {
@@ -110,7 +112,8 @@ const ProductsPage = () => {
       localStorage.setItem("cart", JSON.stringify(filteredItem));
     }
     decreaseCartCount();
-    localStorage.setItem("cartCount", cartCount - 1);
+    const count = Number(cartCount) - 1;
+    localStorage.setItem("cartCount", count);
   };
 
   const increaseCartItemCount = (item) => {
@@ -130,7 +133,8 @@ const ProductsPage = () => {
       localStorage.setItem("cart", JSON.stringify(filteredItem));
     }
     increaseCartCount();
-    localStorage.setItem("cartCount", cartCount + 1);
+    const count = Number(cartCount) + 1;
+    localStorage.setItem("cartCount", count);
   };
 
   const removeItemFromCart = (item) => {
@@ -139,7 +143,9 @@ const ProductsPage = () => {
     setItemInCart(filteredItem);
     decreaseCartCount(quantity);
     localStorage.setItem("cart", JSON.stringify(filteredItem));
-    localStorage.setItem("cartCount", cartCount - quantity);
+    const count = Number(cartCount);
+    const result = count - quantity;
+    localStorage.setItem("cartCount", result);
   };
 
   return (
@@ -148,16 +154,18 @@ const ProductsPage = () => {
       <Jumbotron />
       <div className="products">
         <div className="products-container">
-          {data &&
-            data.products.length > 0 &&
-            data.products.map((product) => (
-              <Product
-                product={product}
-                key={product.id}
-                handleAddItemToCart={handleAddItemToCart}
-                currency={currency}
-              />
-            ))}
+          {data && data.products.length > 0
+            ? data.products.map((product) => (
+                <Product
+                  product={product}
+                  key={product.id}
+                  handleAddItemToCart={handleAddItemToCart}
+                  currency={currency}
+                />
+              ))
+            : [...Array(3)].map((x, index) => (
+                <Loader key={`loader-${index}`} />
+              ))}
         </div>
       </div>
       <Sidebar
