@@ -1,6 +1,6 @@
 # Simple Ecommerce Project
 
-Project link: https://pangaea-chi.vercel.app/
+Project link: https://ecommerce-eosin-ten.vercel.app/
 
 ## Application setup
 
