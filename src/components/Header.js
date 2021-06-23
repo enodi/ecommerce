@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import { ReactComponent as Cart } from "../assets/shopping-cart.svg";
 import { ReactComponent as HamburgerIcon } from "../assets/hamburger.svg";
-import logo from "../assets/logo.png";
 
 const Header = ({ handleShowSidebar, cartCount }) => (
   <header>
@@ -12,7 +11,7 @@ const Header = ({ handleShowSidebar, cartCount }) => (
       <ul className="logo-section">
         <li className="logo-container">
           <Link to="/">
-            <img src={logo} alt="lumin logo" className="logo" />
+            Ecommerce
           </Link>
         </li>
         <li>

@@ -6,7 +6,7 @@ const Jumbotron = () => (
   <section className="jumbotron">
     <div>
       <h2>All Products</h2>
-      <p>A 360° look at Lumin</p>
+      <p>A 360° look</p>
     </div>
     <FilterDropdown />
   </section>
